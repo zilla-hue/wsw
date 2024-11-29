@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 interface CountdownTimerProps {
   targetDate: Date;
@@ -13,6 +14,27 @@ interface TimeLeft {
   minutes: number;
   seconds: number;
 }
+
+const containerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 }
+  }
+};
 
 export default function CountdownTimer({ targetDate, eventName }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -63,14 +85,26 @@ export default function CountdownTimer({ targetDate, eventName }: CountdownTimer
         </div>
 
         {/* Countdown Display */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto">
+        <motion.div 
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
           {[
             { value: timeLeft.days, label: 'D' },
             { value: timeLeft.hours, label: 'H' },
             { value: timeLeft.minutes, label: 'M' },
             { value: timeLeft.seconds, label: 'S' }
           ].map(({ value, label }) => (
-            <div key={label} className="relative group">
+            <motion.div
+              key={label}
+              className="relative group"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <div className="bg-black/40 backdrop-blur-sm rounded-lg border border-brand-gold/20 p-6 md:p-8 transition-all duration-300 group-hover:border-brand-gold/40">
                 <div className="relative">
                   <div className="text-5xl md:text-7xl font-bold text-white mb-2 font-mono tracking-wider tabular-nums">
@@ -83,9 +117,9 @@ export default function CountdownTimer({ targetDate, eventName }: CountdownTimer
               </div>
               {/* Reflection Effect */}
               <div className="absolute inset-x-0 h-1/2 bottom-0 bg-gradient-to-b from-transparent to-brand-gold/5 rounded-b-lg" />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Supporting Text */}
         <div className="text-center mt-12">

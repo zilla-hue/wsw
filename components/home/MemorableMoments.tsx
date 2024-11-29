@@ -48,6 +48,28 @@ const videoMoments = [
 
 //"https://www.youtube.com/embed/4ze3WKKuRf0?si=zcUsgunK9bK1LMa4" 
 
+const galleryVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const imageVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut"
+    }
+  }
+};
+
 export default function MemorableMoments() {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -122,12 +144,22 @@ export default function MemorableMoments() {
         </div>
 
         {/* Grid Gallery */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <motion.div 
+          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={galleryVariants}
+        >
           {concertMoments.map((moment, index) => (
             <motion.div
               key={moment.id}
-              whileHover={{ scale: 1.05 }}
-              className="relative aspect-square rounded-lg overflow-hidden cursor-pointer group"
+              variants={imageVariants}
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.2 }
+              }}
+              className="relative aspect-square rounded-lg overflow-hidden cursor-pointer"
               onClick={() => handleImageClick(index)}
             >
               <Image
@@ -142,7 +174,7 @@ export default function MemorableMoments() {
               <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <ImageGalleryModal
