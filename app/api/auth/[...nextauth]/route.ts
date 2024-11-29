@@ -2,6 +2,7 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { compare } from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
 
 const handler = NextAuth({
   providers: [
@@ -64,6 +65,7 @@ const handler = NextAuth({
       return session;
     },
   },
+  adapter: PrismaAdapter(prisma),
 });
 
 export { handler as GET, handler as POST };
