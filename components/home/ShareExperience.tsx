@@ -31,6 +31,21 @@ const formConfig = {
   }
 } as const;
 
+// Add these animation variants
+const formVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
+  },
+  exit: {
+    opacity: 0,
+    x: 20,
+    transition: { duration: 0.3 }
+  }
+};
+
 export default function ShareExperience() {
   const [formType, setFormType] = useState<FormType>('volunteer');
   const [isMounted, setIsMounted] = useState(false);
@@ -70,22 +85,22 @@ export default function ShareExperience() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Form Section */}
-          <div className="bg-brand-dark/50 p-8 rounded-lg border border-brand-gold/20">
-            <motion.div
-              key={formType}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h3 className="text-xl font-semibold text-brand-gold mb-2">
-                {formConfig[formType].title}
-              </h3>
-              <p className="text-gray-400 mb-6">
-                {formConfig[formType].description}
-              </p>
-              {renderForm()}
-            </motion.div>
-          </div>
+          <motion.div
+            key={formType}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={formVariants}
+            className="bg-brand-dark/50 p-8 rounded-lg border border-brand-gold/20"
+          >
+            <h3 className="text-xl font-semibold text-brand-gold mb-2">
+              {formConfig[formType].title}
+            </h3>
+            <p className="text-gray-400 mb-6">
+              {formConfig[formType].description}
+            </p>
+            {renderForm()}
+          </motion.div>
 
           {/* Action Buttons */}
           <div className="space-y-6">
@@ -95,10 +110,13 @@ export default function ShareExperience() {
                 const isActive = type === formType;
 
                 return (
-                  <button
+                  <motion.button
                     key={type}
                     onClick={() => setFormType(type)}
-                    className={`relative bg-brand-dark/50 p-8 rounded-lg border transition-all duration-300 group ${
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    className={`relative bg-brand-dark/50 p-8 rounded-lg border ${
                       isActive
                         ? 'border-brand-gold shadow-lg shadow-brand-gold/10'
                         : 'border-brand-gold/20 hover:border-brand-gold/40'
@@ -124,7 +142,7 @@ export default function ShareExperience() {
                         {formConfig[type].description}
                       </p>
                     </div>
-                  </button>
+                  </motion.button>
                 );
               })}
             </div>
