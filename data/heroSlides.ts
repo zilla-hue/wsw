@@ -21,7 +21,7 @@ export const heroSlides: HeroSlide[] = [
   {
     title: "When Sinners Worship",
     description: "Join us in our journey of worship, healing, and spiritual growth. Experience the transformative power of worship.",
-    image: "/images/hero-slide-1.jpg",
+    image: "/images/hero-slide-1.JPG",
     primaryLink: "/events",
     primaryText: "View Events",
     secondaryLink: "/contact",
@@ -30,7 +30,7 @@ export const heroSlides: HeroSlide[] = [
   {
     title: "Make a Difference",
     description: "Support our ministry through your generous donations. Help us continue spreading the message of hope and transformation.",
-    image: "/images/hero-slide-2.jpg",
+    image: "/images/hero-slide-2.JPG",
     primaryLink: "/donate",
     primaryText: "Donate Now",
     secondaryLink: "/contact",
@@ -39,7 +39,7 @@ export const heroSlides: HeroSlide[] = [
   {
     title: "Volunteer With Us",
     description: "Use your gifts and talents to serve others. Join our team of dedicated volunteers making a difference in our community.",
-    image: "/images/hero-slide-3.jpg",
+    image: "/images/hero-slide-3.JPG",
     primaryLink: "/contact",
     primaryText: "Join Our Team",
     secondaryLink: "/events",
