@@ -48,9 +48,10 @@ export default function AboutPage() {
       {/* Hero Section */}
       <div className="relative h-[40vh] min-h-[400px] bg-black">
         <Image
-          src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7"
+          src="/images/concert-1.JPG"
           alt="Worship Experience"
           fill
+          priority
           className="object-cover opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 to-brand-dark" />

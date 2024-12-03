@@ -14,6 +14,7 @@ const events: EventType[] = [
     location: 'Main Sanctuary',
     description: 'Join us for a powerful night of worship and spiritual transformation.',
     imageUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7',
+    alt: 'Night of Divine Encounter event',
     ticketTypes: [
       { id: '1', name: 'General Admission', price: 0, available: true },
       { id: '2', name: 'VIP Seating', price: 50, available: true },

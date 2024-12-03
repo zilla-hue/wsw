@@ -10,6 +10,7 @@ const upcomingEvents: EventType[] = [
     location: 'University of Abuja Main Campus',
     description: 'Join us for a powerful night of worship and spiritual transformation.',
     imageUrl: '/images/abuja-reckoning.jpg',
+    alt: "Abuja Reckoning 2024 Event Banner",
     ticketTypes: [
       { id: '1', name: 'General Admission', price: 0, available: true },
       { id: '2', name: 'VIP Seating', price: 50, available: true },

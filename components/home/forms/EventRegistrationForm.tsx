@@ -1,79 +1,69 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+// import { useForm } from 'react-hook-form';
+// import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Loader2 } from 'lucide-react';
+import { useSubmitForm } from '@/lib/firebase/hooks/useSubmitForm';
+import { COLLECTIONS } from '@/lib/firebase/collections';
 
 const formSchema = z.object({
   fullName: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().regex(/^[0-9+\s-]{10,}$/, 'Please enter a valid phone number'),
-  sessionTime: z.enum(['morning', 'afternoon', 'evening'], {
-    required_error: 'Please select a session time',
-  }),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
-const sessionTimes = [
-  { value: 'morning', label: 'Morning (9:00 AM - 12:00 PM)' },
-  { value: 'afternoon', label: 'Afternoon (2:00 PM - 5:00 PM)' },
-  { value: 'evening', label: 'Evening (6:00 PM - 9:00 PM)' },
-];
-
 export default function EventRegistrationForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+  const [formData, setFormData] = useState<FormData>({
+    fullName: '',
+    email: '',
+    phone: '',
   });
 
-  const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true);
-    try {
-      // Replace with your actual API endpoint
-      await fetch('/api/register-event', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+  const { submitForm, isLoading, error } = useSubmitForm({
+    collectionName: COLLECTIONS.EVENT_REGISTRATIONS,
+    schema: formSchema,
+    onSuccess: () => {
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
       });
-      setSubmitStatus('success');
-      reset();
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus('idle'), 5000);
-    }
+    },
+    successMessage: 'Registration successful! Check your email for confirmation.',
+    errorMessage: 'Registration failed. Please try again.'
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await submitForm(formData);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {error && (
+        <div className="p-3 bg-red-500/20 border border-red-500 rounded-md text-red-200">
+          {error}
+        </div>
+      )}
+
       <div>
         <label htmlFor="fullName" className="block text-sm font-medium text-gray-200">
           Full Name
         </label>
         <input
-          {...register('fullName')}
           type="text"
           id="fullName"
+          value={formData.fullName}
+          onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
           className="mt-1 block w-full rounded-md bg-brand-dark/50 border border-brand-gold/20 
                      text-gray-200 px-3 py-2 focus:border-brand-gold focus:ring-brand-gold"
-          aria-describedby={errors.fullName ? 'fullName-error' : undefined}
+          disabled={isLoading}
+          required
         />
-        {errors.fullName && (
-          <p id="fullName-error" className="mt-1 text-sm text-red-500">
-            {errors.fullName.message}
-          </p>
-        )}
       </div>
 
       <div>
@@ -81,18 +71,15 @@ export default function EventRegistrationForm() {
           Email Address
         </label>
         <input
-          {...register('email')}
           type="email"
           id="email"
+          value={formData.email}
+          onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
           className="mt-1 block w-full rounded-md bg-brand-dark/50 border border-brand-gold/20 
                      text-gray-200 px-3 py-2 focus:border-brand-gold focus:ring-brand-gold"
-          aria-describedby={errors.email ? 'email-error' : undefined}
+          disabled={isLoading}
+          required
         />
-        {errors.email && (
-          <p id="email-error" className="mt-1 text-sm text-red-500">
-            {errors.email.message}
-          </p>
-        )}
       </div>
 
       <div>
@@ -100,66 +87,26 @@ export default function EventRegistrationForm() {
           Phone Number
         </label>
         <input
-          {...register('phone')}
           type="tel"
           id="phone"
+          value={formData.phone}
+          onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
           className="mt-1 block w-full rounded-md bg-brand-dark/50 border border-brand-gold/20 
                      text-gray-200 px-3 py-2 focus:border-brand-gold focus:ring-brand-gold"
-          aria-describedby={errors.phone ? 'phone-error' : undefined}
+          disabled={isLoading}
+          required
         />
-        {errors.phone && (
-          <p id="phone-error" className="mt-1 text-sm text-red-500">
-            {errors.phone.message}
-          </p>
-        )}
       </div>
-
-      <div>
-        <label htmlFor="sessionTime" className="block text-sm font-medium text-gray-200">
-          Preferred Session Time
-        </label>
-        <select
-          {...register('sessionTime')}
-          id="sessionTime"
-          className="mt-1 block w-full rounded-md bg-brand-dark/50 border border-brand-gold/20 
-                     text-gray-200 px-3 py-2 focus:border-brand-gold focus:ring-brand-gold"
-          aria-describedby={errors.sessionTime ? 'sessionTime-error' : undefined}
-        >
-          <option value="">Select a session time</option>
-          {sessionTimes.map((session) => (
-            <option key={session.value} value={session.value}>
-              {session.label}
-            </option>
-          ))}
-        </select>
-        {errors.sessionTime && (
-          <p id="sessionTime-error" className="mt-1 text-sm text-red-500">
-            {errors.sessionTime.message}
-          </p>
-        )}
-      </div>
-
-      {submitStatus === 'success' && (
-        <div className="p-3 bg-green-500/20 border border-green-500 rounded-md text-green-200">
-          Registration submitted successfully! We&apos;ll be in touch soon.
-        </div>
-      )}
-
-      {submitStatus === 'error' && (
-        <div className="p-3 bg-red-500/20 border border-red-500 rounded-md text-red-200">
-          There was an error submitting your registration. Please try again.
-        </div>
-      )}
 
       <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isLoading}
         className="w-full flex items-center justify-center px-4 py-2 border border-transparent 
                  rounded-md shadow-sm text-base font-medium text-black bg-brand-gold 
                  hover:bg-brand-gold/90 focus:outline-none focus:ring-2 focus:ring-offset-2 
                  focus:ring-brand-gold disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isSubmitting ? (
+        {isLoading ? (
           <>
             <Loader2 className="animate-spin -ml-1 mr-3 h-5 w-5" />
             Submitting...

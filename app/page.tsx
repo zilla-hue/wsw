@@ -8,7 +8,7 @@ import { heroSlides } from '@/data/heroSlides';
 import CountdownTimer from '@/components/CountdownTimer';
 import ShareExperience from '@/components/home/ShareExperience';
 import MemorableMoments from '@/components/home/MemorableMoments';
-import { FeatureCard } from '@/components/home/FeatureCard';
+// import { FeatureCard } from '@/components/home/FeatureCard';
 import MinistrySection from '@/components/home/MinistrySection';
 import CTASection from '@/components/home/CTASection';
 
@@ -17,25 +17,29 @@ const features = [
     icon: Calendar,
     title: "Night Vigils",
     description: "Experience powerful nights of worship and prayer.",
-    backgroundImage: "/images/night-vigil.jpg"
+    backgroundImage: "/images/night-vigil.jpg",
+    alt: "Night vigil worship service"
   },
   {
     icon: Music,
     title: "Gospel Concerts",
     description: "Join us for uplifting musical celebrations.",
-    backgroundImage: "/images/gospel-concert.jpg"
+    backgroundImage: "/images/gospel-concert.jpg",
+    alt: "Gospel concert performance"
   },
   {
     icon: Users,
     title: "Community",
     description: "Be part of our growing family of believers.",
-    backgroundImage: "/images/community.jpg"
+    backgroundImage: "/images/community.jpg",
+    alt: "Community gathering"
   },
   {
     icon: Heart,
     title: "Outreach",
     description: "Serving our community with love and compassion.",
-    backgroundImage: "/images/outreach.JPG"
+    backgroundImage: "/images/outreach.JPG",
+    alt: "Community outreach program"
   }
 ];
 
@@ -48,7 +52,7 @@ export default function Home() {
        {/* Countdown Timer */}
        <CountdownTimer 
         targetDate={new Date('2024-12-13T18:00:00')} 
-        eventName="Abuja Reckoning"
+        eventName="ABUJA RECKONING"
       />
 
 

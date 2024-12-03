@@ -13,5 +13,6 @@ export interface EventType {
   location: string;
   description: string;
   imageUrl: string;
+  alt: string;
   ticketTypes: TicketType[];
 }
