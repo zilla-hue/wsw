@@ -48,12 +48,13 @@ export default function AboutPage() {
       {/* Hero Section */}
       <div className="relative h-[40vh] min-h-[400px] bg-black">
         <Image
-          src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7"
+          src="/images/about-us.JPG"
           alt="Worship Experience"
           fill
+          priority
           className="object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 to-brand-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/30 to-brand-dark" />
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-4xl md:text-6xl font-bold text-brand-gold text-center px-4">
             When Sinners Worship

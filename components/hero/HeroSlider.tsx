@@ -74,7 +74,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
               {slide.image && (
                 <Image
                   src={slide.image}
-                  alt={slide.title!}
+                  alt={slide.alt || slide.title!}
                   fill
                   className="object-cover"
                   priority={index === 0}
@@ -88,7 +88,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
               {slide.backgroundImage && !slide.image && (
                 <Image
                   src={slide.backgroundImage}
-                  alt={slide.title!}
+                  alt={slide.alt || slide.title!}
                   fill
                   className="object-cover"
                   priority={index === 0}
@@ -121,7 +121,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                     >
                       <Image
                         src={slide.overlayImage.src}
-                        alt="Slide overlay"
+                        alt={slide.overlayImage.alt || "Slide overlay"}
                         fill
                         className="object-contain"
                         priority={index === 0}

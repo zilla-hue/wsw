@@ -15,7 +15,8 @@ export const heroSlides: HeroSlide[] = [
         top: "50%",
         transform: "translate(-50%, -50%)",
         margin: "0"
-      }
+      },
+      alt: "WSW Wednesday 2024 Event Banner"
     }
   },
   {
@@ -25,7 +26,8 @@ export const heroSlides: HeroSlide[] = [
     primaryLink: "/events",
     primaryText: "View Events",
     secondaryLink: "/contact",
-    secondaryText: "Get Involved"
+    secondaryText: "Get Involved",
+    alt: "Worship service gathering"
   },
   {
     title: "Make a Difference",
@@ -34,7 +36,8 @@ export const heroSlides: HeroSlide[] = [
     primaryLink: "/donate",
     primaryText: "Donate Now",
     secondaryLink: "/contact",
-    secondaryText: "Learn More"
+    secondaryText: "Learn More",
+    alt: "Community outreach and support"
   },
   {
     title: "Volunteer With Us",
@@ -43,6 +46,7 @@ export const heroSlides: HeroSlide[] = [
     primaryLink: "/contact",
     primaryText: "Join Our Team",
     secondaryLink: "/events",
-    secondaryText: "See Opportunities"
+    secondaryText: "See Opportunities",
+    alt: "Volunteer team in action"
   }
 ];

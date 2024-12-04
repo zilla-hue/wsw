@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Send, Users, Gift, Store, Megaphone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import VolunteerForm from './forms/VolunteerForm';
-import DonationForm from './forms/DonationForm';
+// import DonationForm from './forms/DonationForm';
 import EventRegistrationForm from './forms/EventRegistrationForm';
 
 
@@ -24,7 +24,7 @@ const formConfig = {
   //   label: 'GIVE',
   // },
   register: {
-    title: 'Register for Abuja Reckoning',
+    title: 'Register for WSW',
     description: 'Join us for this transformative event',
     icon: Megaphone,
     label: 'REGISTER',
@@ -80,7 +80,7 @@ export default function ShareExperience() {
     <section id="share-experience" className="py-16 bg-brand-dark/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-brand-gold text-center mb-12">
-          SHARE THE EXPERIENCE
+          JOIN THE MOVEMENT
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

@@ -46,7 +46,6 @@ const videoMoments = [
 
 ];
 
-//"https://www.youtube.com/embed/4ze3WKKuRf0?si=zcUsgunK9bK1LMa4" 
 
 const galleryVariants = {
   hidden: { opacity: 0 },
@@ -112,7 +111,7 @@ export default function MemorableMoments() {
           <div className="absolute inset-0 z-10">
             <Image
               src="/images/wsw-lokoja-moments.jpg"
-              alt={videoMoments[0].title}
+              alt={videoMoments[selectedVideoIndex]?.title || "WSW Lokoja Performance Video"}
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"
               priority

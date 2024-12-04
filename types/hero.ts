@@ -12,6 +12,7 @@ export interface OverlayImage {
     left?: string;
     transform?: string;
   }
+  alt: string;
 }
 
 export interface HeroSlide {
@@ -24,4 +25,5 @@ export interface HeroSlide {
   primaryText?: string;
   secondaryLink?: string;
   secondaryText?: string;
+  alt?: string;
 }
