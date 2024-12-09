@@ -25,8 +25,8 @@ export const heroSlides: HeroSlide[] = [
     image: "/images/hero-slide-1.JPG",
     primaryLink: "/events",
     primaryText: "View Events",
-    secondaryLink: "/contact",
-    secondaryText: "Get Involved",
+    secondaryLink: "/register",
+    secondaryText: "Register Now",
     alt: "Worship service gathering"
   },
   {
@@ -43,7 +43,7 @@ export const heroSlides: HeroSlide[] = [
     title: "Volunteer With Us",
     description: "Use your gifts and talents to serve others. Join our team of dedicated volunteers making a difference in our community.",
     image: "/images/hero-slide-3.JPG",
-    primaryLink: "/contact",
+    primaryLink: "/volunteer",
     primaryText: "Join Our Team",
     secondaryLink: "/events",
     secondaryText: "See Opportunities",

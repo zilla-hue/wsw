@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { useSubmitForm } from '@/lib/firebase/hooks/useSubmitForm';
 import { volunteerSchema } from '@/lib/firebase/schemas';

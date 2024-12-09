@@ -5,7 +5,7 @@ import { Menu } from 'lucide-react';
 import { useState } from 'react';
 import { clsx } from 'clsx';
 import Logo from '@/components/shared/Logo';
-
+import { useRouter } from 'next/navigation';
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -17,6 +17,11 @@ const navItems = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  const handleRegisterClick = () => {
+    router.push('/register');
+  };
 
   return (
     <nav className="relative bg-brand-dark border-b border-brand-gold/20 z-50">
@@ -39,8 +44,8 @@ export default function Navigation() {
                 {item.label}
               </Link>
             ))}
-            {/* <Link
-              href="/donate"
+            <Link
+              href="/register"
               className={clsx(
                 'bg-brand-gold hover:bg-brand-gold/90 text-brand-dark',
                 'px-6 py-2 rounded-full text-sm font-semibold',
@@ -50,13 +55,13 @@ export default function Navigation() {
                 'flex items-center justify-center'
               )}
             >
-              Donate Now
-            </Link> */}
+              Register Now
+            </Link>
           </div>
 
           <div className="md:hidden flex items-center">
-          {/* <Link
-              href="/donate"
+          <Link
+              href="/register"
               className={clsx(
                 'bg-brand-gold hover:bg-brand-gold/90 text-brand-dark',
                 'px-4 py-1.5 rounded-full text-sm font-semibold',
@@ -65,8 +70,8 @@ export default function Navigation() {
                 'border-2 border-transparent hover:border-brand-gold/20'
               )}
             >
-              Donate
-            </Link> */}
+              Register
+            </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-300 hover:text-brand-gold p-2"
