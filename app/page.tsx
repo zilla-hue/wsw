@@ -24,14 +24,14 @@ const features = [
     icon: Music,
     title: "Gospel Concerts",
     description: "Join us for uplifting musical celebrations.",
-    backgroundImage: "/images/gospel-concert.jpg",
+    backgroundImage: "/images/gospel-concert.JPG",
     alt: "Gospel concert performance"
   },
   {
     icon: Users,
     title: "Community",
     description: "Be part of our growing family of believers.",
-    backgroundImage: "/images/community.jpg",
+    backgroundImage: "/images/community.JPG",
     alt: "Community gathering"
   },
   {
@@ -51,7 +51,7 @@ export default function Home() {
 
        {/* Countdown Timer */}
        <CountdownTimer 
-        targetDate={new Date('2024-12-13T18:00:00')} 
+        targetDate={new Date('2024-12-13T19:00:00')} 
         eventName="ABUJA RECKONING"
       />
 
