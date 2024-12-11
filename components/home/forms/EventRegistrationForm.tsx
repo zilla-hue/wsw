@@ -12,6 +12,7 @@ const formSchema = z.object({
   fullName: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().regex(/^[0-9+\s-]{10,}$/, 'Please enter a valid phone number'),
+  location: z.string().optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -21,6 +22,7 @@ export default function EventRegistrationForm() {
     fullName: '',
     email: '',
     phone: '',
+    location: '',
   });
 
   const { submitForm, isLoading, error } = useSubmitForm({
@@ -31,6 +33,7 @@ export default function EventRegistrationForm() {
         fullName: '',
         email: '',
         phone: '',
+        location: '',
       });
     },
     successMessage: 'Registration successful! Check your email for confirmation.',
@@ -97,6 +100,22 @@ export default function EventRegistrationForm() {
           required
         />
       </div>
+
+      <div>
+        <label htmlFor="location" className="block text-sm font-medium text-gray-200">
+          Location
+        </label>
+      </div>
+      <input
+        type="text"
+        id="location"
+        value={formData.location}
+        onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
+        className="mt-1 block w-full rounded-md bg-brand-dark/50 border border-brand-gold/20 
+                   text-gray-200 px-3 py-2 focus:border-brand-gold focus:ring-brand-gold"
+        disabled={isLoading}
+        required
+      />
 
       <button
         type="submit"
