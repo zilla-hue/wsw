@@ -5,7 +5,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Providers from './providers';
 import { Toaster } from 'react-hot-toast';
-import WelcomeModal from '@/components/WelcomeModal';
+// import WelcomeModal from '@/components/WelcomeModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-brand-dark text-gray-100`}>
-        <WelcomeModal />
+        {/* <WelcomeModal /> */}
         <Navigation />
         <main className="min-h-screen">
           <Providers>{children}</Providers>

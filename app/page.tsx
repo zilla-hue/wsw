@@ -11,6 +11,7 @@ import MemorableMoments from '@/components/home/MemorableMoments';
 // import { FeatureCard } from '@/components/home/FeatureCard';
 import MinistrySection from '@/components/home/MinistrySection';
 import CTASection from '@/components/home/CTASection';
+import VideoSection from '@/components/home/VideoSection';
 
 const features = [
   {
@@ -55,6 +56,8 @@ export default function Home() {
         eventName="ABUJA RECKONING"
       />
 
+      {/* Add the VideoSection here */}
+      <VideoSection />
 
       {/* Memorable Moments */}
       <MemorableMoments />

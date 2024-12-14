@@ -3,6 +3,8 @@ import DashboardStats from '@/components/admin/DashboardStats';
 import DonationChart from '@/components/admin/DonationChart';
 import RecentEvents from '@/components/admin/RecentEvents';
 import RecentDonations from '@/components/admin/RecentDonations';
+import RegistrationsTable from '@/components/admin/tables/RegistrationTable';
+import VolunteersTable from '@/components/admin/tables/VolunteerTable';
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard | When Sinners Worship',
@@ -32,6 +34,16 @@ export default function AdminDashboard() {
         <h2 className="text-xl font-semibold mb-4">Recent Donations</h2>
         <RecentDonations />
       </div>
+
+      <div className="bg-white p-6 rounded-lg shadow">
+      <h2 className="text-xl font-semibold mb-4">Registrations</h2>
+        <RegistrationsTable />
+     </div>
+
+     <div className="bg-white p-6 rounded-lg shadow">
+      <h2 className="text-xl font-semibold mb-4">Volunteers</h2>
+        <VolunteersTable />
+     </div>
     </div>
   );
 }

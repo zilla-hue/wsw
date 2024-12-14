@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { Search, Download } from 'lucide-react';
+import ExportButton from './ExportButton';
 
 interface Donation {
   id: string;
@@ -41,6 +42,16 @@ export default function DonationsTable() {
   const [sortField, setSortField] = useState<keyof Donation>('date');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
+  const exportHeaders = [
+    'id',
+    'donor',
+    'email',
+    'amount',
+    'type',
+    'date',
+    'status',
+  ];
+  
   const handleSort = (field: keyof Donation) => {
     if (sortField === field) {
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
@@ -62,10 +73,10 @@ export default function DonationsTable() {
       return a[sortField] < b[sortField] ? 1 : -1;
     });
 
-  const exportData = () => {
-    // TODO: Implement CSV export
-    console.log('Exporting data...');
-  };
+  // const exportData = () => {
+  //   // TODO: Implement CSV export
+  //   console.log('Exporting data...');
+  // };
 
   return (
     <div className="space-y-4">
@@ -80,13 +91,11 @@ export default function DonationsTable() {
           />
           <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
         </div>
-        <button
-          onClick={exportData}
-          className="flex items-center px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
-        >
-          <Download className="h-5 w-5 mr-2" />
-          Export CSV
-        </button>
+        <ExportButton
+          collectionName="donations"
+          filename="donations"
+          headers={exportHeaders}
+        />
       </div>
 
       <div className="overflow-x-auto">
