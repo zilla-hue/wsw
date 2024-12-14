@@ -19,6 +19,7 @@ export const registrationSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address'),
   details: z.string().min(10, 'Details must be at least 10 characters'),
+  location: z.string().min(2, 'Loction must be at least 2 characters'),
   registeredAt: z.date().optional(),
 });
 
