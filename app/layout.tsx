@@ -1,20 +1,22 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import Providers from './providers';
-import { Toaster } from 'react-hot-toast';
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import Providers from "./providers";
+import { Toaster } from "react-hot-toast";
 // import WelcomeModal from '@/components/WelcomeModal';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'When Sinners Worship',
-  description: 'A ministry focused on night vigils and gospel concerts',
+  title: "When Sinners Worship",
+  description: "A ministry focused on night vigils and gospel concerts",
   icons: {
-    icon: '/icon.png',
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/apple-touch-icon.svg", type: "image/svg+xml" }],
   },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({

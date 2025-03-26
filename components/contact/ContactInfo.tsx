@@ -11,14 +11,14 @@ export default function ContactInfo() {
         </div>
       </div>
 
-      <div className="flex items-start space-x-4">
+      {/* <div className="flex items-start space-x-4">
         <Phone className="w-6 h-6 text-brand-gold flex-shrink-0" />
         <div>
           <h3 className="text-lg font-medium text-brand-gold">Phone</h3>
           <p className="text-gray-300">(+234) 803-972-2204</p>
         
         </div>
-      </div>
+      </div> */}
 
       <div className="flex items-start space-x-4">
         <MapPin className="w-6 h-6 text-brand-gold flex-shrink-0" />
