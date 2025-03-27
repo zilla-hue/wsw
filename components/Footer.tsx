@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <Logo className="h-12 mb-4" />
             <p className="text-gray-400">Email: info@whensinnersworship.org</p>
-            <p className="text-gray-400">Phone: (+234) 803-972-2204</p>
+            {/* <p className="text-gray-400">Phone: (+234) 803-972-2204</p> */}
           </div>
           <div>
             <h3 className="text-brand-gold font-semibold text-lg mb-4">Quick Links</h3>
